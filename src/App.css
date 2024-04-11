@@ -84,3 +84,8 @@
 .task_form_submit:hover {
   background-color: #4b4b4b;
 }
+
+.error_msg {
+  color: rgb(156, 0, 0);
+  font-weight: bold;
+}
