@@ -10,7 +10,7 @@ const taskReducer = createSlice({
     },
     reducers: {
         addTask(state, action) {
-            state.tasklist = [...state.tasklist, {id: state.id, userid: state.userid, title: state.title, completed: false}],
+            state.tasklist = [...state.tasklist, {id: state.id, userid: state.userid, title: state.title.trim(), completed: false}],
             state.id++,
             state.title = ''
         },
