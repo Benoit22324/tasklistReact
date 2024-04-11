@@ -1,18 +1,23 @@
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { selectError, selectTitle } from '../store/selector/task';
-import { addError, addTask, updateTitle } from '../store/reducer/taskReducer';
+import { addError, fetchTask, newTask, updateTitle } from '../store/reducer/taskReducer';
 
 const TaskForm = () => {
     const dispatch = useDispatch();
     const title = useSelector(selectTitle);
     const error = useSelector(selectError);
 
+    useEffect(() => {
+        dispatch(fetchTask());
+    }, [])
+
     const update = (e) => {
         dispatch(updateTitle(e.target.value));
     }
 
     const add = () => {
-        if (title.trim() !== '') dispatch(addTask());
+        if (title.trim() !== '') dispatch(newTask({userId: 1, title: title.trim(), completed: false}));
         else if (title.trim() === '') dispatch(addError('Veuillez saisir le nom de la tâche'))
     }
 
